@@ -8,6 +8,9 @@ import CarTeaser from "@/components/car-concept/CarTeaser";
 import NewsletterHome from "@/components/newsletterinfo/NewsletterHome";
 import CompetitionCountdown from "@/components/Countdown_quote/CompetitionCountdown";
 import TimelineSection from "@/components/Timeline/TimelineSection";
+import CompetitionCountdown from "@/components/Countdown_quote/CompetitionCountdown";
+import { Quote } from "lucide-react";
+import QuoteSection from "@/components/Countdown_quote/QuoteSection";
 
 export default function Home() {
   // Keeps track of when the loader is completely finished to unmount it
@@ -32,6 +35,8 @@ export default function Home() {
       <AUSParagraph />
       <CompetitionCountdown />
       <TimelineSection />
+      <CompetitionCountdown />
+      <QuoteSection />
       <CarTeaser />
       <NewsletterHome />
 
