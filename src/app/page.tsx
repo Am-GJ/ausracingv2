@@ -30,7 +30,12 @@ export default function Home() {
       )}
 
       {/* HERO CONTENT */}
-      <HeroVideo onVideoReady={() => setVideoReady(true)} />
+      <HeroVideo onVideoReady={() => setVideoReady(true)}
+        isLoaderDone={isLoaderDone} />
+      <Loader 
+        isReady={videoReady} 
+        onComplete={() => setIsLoaderDone(true)} 
+      />
       <SponsorsStrip />
       <AUSParagraph />
       <Spacer height={55} />
