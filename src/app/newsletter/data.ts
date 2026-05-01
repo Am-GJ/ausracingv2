@@ -196,6 +196,121 @@ export const newsletterArticles: Article[] = [
 
 
 
+    slug: "July-News",
+    title: "July News",
+    shortDescription:
+      "In our second installment, you can read about our choice of wheels and tires or learn about battery design or how suspension geometries are tuned.",
+    image: "/newsletter/July24/July_news_page-0001.jpg",
+    date: "01-08-2024",
+    sections: [
+      {
+        image: "/newsletter/July24/July_news_page-0002.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0003.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0004.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0005.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0006.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0007.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0008.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0009.jpg",
+      },
+      {
+        image: "/newsletter/July24/July_news_page-0010.jpg",
+      }
+    ]
+  },
+{
+    slug: "Aug-News",
+    title: "August News",
+    shortDescription:
+      "In our August 2024 edition, we dive deeper into the dynamics of our car, and introduce a new and rather unexpected dimension to it environmental conscience.",
+    image: "/newsletter/Aug24/Aug_news_page-0001.jpg",
+    date: "01-09-2024",
+    sections: [
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0002.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0003.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0004.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0005.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0006.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0007.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0008.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0009.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0010.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0011.jpg",
+      },
+      {
+        image: "/newsletter/Aug24/Aug_news_page-0012.jpg",
+      }
+    ]
+  },
+  // {
+  //   slug: "POST-1",
+  //   title: "post 1",
+  //   shortDescription: "A new aerodynamic update has been revealed.",
+  //   image: "/images/team/placeholder.webp",
+  //   date: "16-04-2026",
+  //   sections: [
+  //     {
+  //       text: "Full article about the new car launch goes here...",
+  //     }
+  //   ]
+  // },
+  // {
+  //   slug: "POST-2",
+  //   title: "post 2",
+  //   shortDescription: "Strong performance during testing sessions.",
+  //   image: "/images/team/placeholder.webp",
+  //   date: "19-05-2026",
+  //   sections: [
+  //     {
+  //       text: "Full testing breakdown and analysis goes here...",
+  //     }
+  //   ]
+  // },
+  // {
+  //   slug: "POST-3",
+  //   title: "post 3",
+  //   shortDescription: "A new aerodynamic update has been revealed.",
+  //   image: "/images/team/placeholder.webp",
+  //   date: "16-06-2026",
+  //   sections: [
+  //     {
+  //       text: "Full article about the new car launch goes here...",
+  //     }
+  //   ]
+  // },
   {
   slug: "May-News",
   title: "May News",
