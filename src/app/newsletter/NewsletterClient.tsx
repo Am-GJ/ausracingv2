@@ -146,7 +146,6 @@ export default function NewsletterClient({
               alt={selected.title}
               fill
               sizes="(max-width: 768px) 100vw, 60vw"
-            sizes="200rem"
               className="object-cover"
               priority
             />
