@@ -122,6 +122,7 @@ export default function Footer() {
             </button>
           </div>
         </div>
+        </div>
       </div>
 
       {/* BOTTOM */}
@@ -130,5 +131,5 @@ export default function Footer() {
       </div>
 
     </footer>
-  );
+  )
 }
