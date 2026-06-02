@@ -113,7 +113,6 @@ export default function Footer() {
               type="email"
               placeholder="Email address"
               autoComplete="off"
-              className="flex-1 px-3 py-2 bg-transparent text-sm text-gray-200 placeholder-gray-600 outline-none"
               className="flex-1 min-w-0 px-3 py-2 bg-transparent text-sm text-gray-200 placeholder-gray-600 outline-none"
             />
 
