@@ -11,6 +11,26 @@ export default function Footer() {
         {/* COLUMN 1 — BRAND */}
         <div className="flex flex-col gap-4">
 
+          {/* LOGO BOX */}
+          <div className="relative w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 rounded-md border border-gray-700 flex items-center justify-center overflow-visible">
+
+            <div className="absolute w-14 h-14">
+              <Image
+                src="/ausracinglogo.jpg"
+                alt="AUS Racing logo"
+                fill
+                className="object-contain scale-110"
+              />
+            </div>
+
+          </div>
+
+          <h3 className="text-lg font-medium text-gray-200">
+            AUS Racing
+          </h3>
+
+          <div className="text-base text-gray-400">
+            🏎️ 🔥🔥
           <div className="relative w-32 h-16 flex items-center justify-start overflow-visible">
             <Image
               src="/images/logo.webp"
@@ -84,11 +104,15 @@ export default function Footer() {
             Stay updated with AUS Racing.
           </p>
 
-          <div className="flex items-center w-full rounded-md border border-gray-800 bg-gray-900 overflow-hidden">
-
+          <div
+            suppressHydrationWarning
+            className="flex items-center w-full rounded-md border border-gray-800 bg-gray-900 overflow-hidden"
+          >
             <input
+              suppressHydrationWarning
               type="email"
               placeholder="Email address"
+              autoComplete="off"
               className="flex-1 min-w-0 px-3 py-2 bg-transparent text-sm text-gray-200 placeholder-gray-600 outline-none"
             />
 
@@ -96,6 +120,7 @@ export default function Footer() {
               Subscribe
             </button>
           </div>
+        </div>
         </div>
       </div>
 
@@ -105,5 +130,5 @@ export default function Footer() {
       </div>
 
     </footer>
-  );
+  )
 }

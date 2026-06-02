@@ -23,6 +23,20 @@ export default function NewsletterHome() {
           Latest <span className="text-[#fbb03a]">Newsletter</span>
         </h2>
       {/* MAIN LATEST NEWS CARD */}
+      <div className="w-full max-w-2xl border border-white/10 rounded-xl overflow-hidden bg-white/5">
+  <div className="relative w-full h-64">
+    <Image
+      src={latest.image}
+      alt={latest.title}
+      fill
+      sizes="(max-width: 768px) 100vw, 50vw"
+      className="object-cover"
+    />
+  </div>
+
+  <div className="p-5">
+    <h1 className="text-2xl font-bold">{latest.title}</h1>
+  
       <div className="w-full border mt-10 border-white/10 rounded-xl overflow-hidden bg-white/5 flex flex-col md:flex-row">
         
         {/* IMAGE - Left side on desktop, top on mobile */}
