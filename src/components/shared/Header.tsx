@@ -12,10 +12,10 @@ import { useState, useEffect } from "react";
 // Define the links in an array to keep the JSX clean
 const navLinks = [
   { name: "Home", href: "/#" },
-  { name: "Our Car", href: "/#our-car" },
   { name: "Team", href: "/team" },
+  { name: "Our Car", href: "/#our-car" },
   { name: "Newsletter", href: "/newsletter" },
-  // { name: "Media", href: "/media" },
+  { name: "Media", href: "/media" },
   { name: "Contact Us", href: "/#contact" }
 ];
 

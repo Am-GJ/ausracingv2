@@ -5,9 +5,10 @@ import { useEffect, useRef } from "react";
 
 interface HeroVideoProps {
   onVideoReady: () => void;
+  isLoaderDone: boolean; // ✨ NEW PROP
 }
 
-export default function HeroVideo({ onVideoReady }: HeroVideoProps) {
+export default function HeroVideo({ onVideoReady, isLoaderDone }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -15,6 +16,15 @@ export default function HeroVideo({ onVideoReady }: HeroVideoProps) {
       onVideoReady();
     }
   }, [onVideoReady]);
+
+  // ✨ THE REWIND TRIGGER
+  useEffect(() => {
+    if (videoRef.current && isLoaderDone) {
+      // The exact moment the loader finishes, snap the video back to 0 seconds
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {}); // Catch prevents mobile browser errors
+    }
+  }, [isLoaderDone]);
 
   return (
     <section className="relative w-full h-[calc(100vh-68px)] flex items-center justify-center overflow-hidden">
