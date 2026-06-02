@@ -10,6 +10,7 @@ import CompetitionCountdown from "@/components/Countdown_quote/CompetitionCountd
 import TimelineSection from "@/components/Timeline/TimelineSection";
 import { Quote } from "lucide-react";
 import QuoteSection from "@/components/Countdown_quote/QuoteSection";
+import Spacer from "@/components/ui/spacer";
 
 export default function Home() {
   // Keeps track of when the loader is completely finished to unmount it
@@ -29,16 +30,23 @@ export default function Home() {
       )}
 
       {/* HERO CONTENT */}
-      <HeroVideo onVideoReady={() => setVideoReady(true)} />
+      <HeroVideo onVideoReady={() => setVideoReady(true)}
+        isLoaderDone={isLoaderDone} />
+      <Loader 
+        isReady={videoReady} 
+        onComplete={() => setIsLoaderDone(true)} 
+      />
       <SponsorsStrip />
       <AUSParagraph />
+      <Spacer height={55} />
       <CompetitionCountdown />
+      <Spacer height={55} />
       <TimelineSection />
-      <CompetitionCountdown />
-      <QuoteSection />
+      <Spacer height={15} />
       <CarTeaser />
+      <Spacer height={90} />
       <NewsletterHome />
-
+      <QuoteSection />
       
     </main>
   );

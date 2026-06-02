@@ -27,11 +27,12 @@ const timeline = [
 
 export default function TimelineSection() {
   return (
-    <section className="w-full bg-black py-20 text-white">
+    <section id="our-car" className="w-full bg-black py-20 text-white">
       <div className="mx-auto max-w-6xl px-6">
         
 
-        <h2 className="text-center text-3xl font-black uppercase md:text-5xl">
+   
+        <h2 className="text-center text-3xl font-bold md:text-5xl font-orbitron uppercase">
           Our <span className="text-[#fbb03a]">Progress</span>
         </h2>
 
@@ -59,7 +60,8 @@ export default function TimelineSection() {
                   {item.date}
                 </p>
 
-                <p className="mt-1 max-w-[150px] text-sm font-medium leading-6 text-white/80">
+                
+                <p className="mt-1 max-w-[140px] text-xs font-medium  text-white/70 md:text-sm">
                   {item.title}
                 </p>
               </div>
