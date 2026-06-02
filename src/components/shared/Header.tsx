@@ -114,7 +114,8 @@ export default function Header() {
       <div className="flex-1 flex items-center justify-end">
         <Link
           href="/sponsors"
-          className="text-[11px] tracking-widest uppercase px-4 py-2.5 bg-primary text-background font-bold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,170,0,0.5)] cursor-pointer"
+          className="text-[11px] tracking-widest uppercase px-4 py-2.5 bg-primary text-background font-bold rounded-lg
+           transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,170,0,0.5)] cursor-pointer"
         >
           Partner With Us &rarr;
         </Link>

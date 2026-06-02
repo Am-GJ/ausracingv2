@@ -122,11 +122,11 @@ export default function Footer() {
           </div>
         </div>
         </div>
-      </div>
 
       {/* BOTTOM */}
       <div className="mt-12 text-center text-xs text-gray-500">
         © 2026 AUS Racing. All rights reserved.
+      </div>
       </div>
 
     </footer>
