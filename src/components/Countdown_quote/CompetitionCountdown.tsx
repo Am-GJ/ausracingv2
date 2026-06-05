@@ -27,11 +27,15 @@ function getTimeLeft() {
 export default function CompetitionCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" })
 
+  // Fix: Bypasse es lint error, the feature is intentional
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTimeLeft(getTimeLeft())
+    
     const interval = setInterval(() => {
       setTimeLeft(getTimeLeft())
     }, 1000)
+    
     return () => clearInterval(interval)
   }, [])
 

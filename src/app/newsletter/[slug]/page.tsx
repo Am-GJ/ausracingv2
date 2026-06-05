@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { newsletterArticles } from "../data";
 import { notFound } from "next/navigation";
 import BackButton from "@/components/newsletterinfo/BackButton";
@@ -23,13 +22,13 @@ export default async function Page({
           {article.sections.map((section, i) => (
             <div key={i} className="space-y-3 md:space-y-4">
               {section.image && (
+
                 <div className="relative w-full h-[500px] sm:h-[800px] md:h-[1250px] rounded-xl overflow-hidden bg-black">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={section.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain"
+                    alt="Newsletter section"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               )}
