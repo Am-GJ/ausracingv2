@@ -18,6 +18,7 @@ const baseSponsors = [
   { name: "Juma Al Majid", src: "/logos/juma.webp" },
   { name: "SRTI Park SoiLab", src: "/logos/soilab.webp" },
   { name: "American University of Sharjah", src: "/logos/aus.webp" },
+  { name: "Bender", src: "/logos/bender.webp" },
 ]
 
 const sponsors = [...baseSponsors, ...baseSponsors, ...baseSponsors]

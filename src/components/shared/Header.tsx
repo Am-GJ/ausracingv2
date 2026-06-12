@@ -14,8 +14,8 @@ const navLinks = [
   { name: "Team", href: "/team" },
   { name: "Our Car", href: "/#our-car" },
   { name: "Newsletter", href: "/newsletter" },
-  { name: "Media", href: "/media" },
-  { name: "Contact Us", href: "/#contact" }
+  // { name: "Media", href: "/media" },
+  { name: "Contact Us", href: "/sponsors" }
 ];
 
 export default function Header() {
