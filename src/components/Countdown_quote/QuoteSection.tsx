@@ -17,7 +17,7 @@ export default function QuoteSection() {
                         </p>
 
                         <blockquote className="text-lg font-semibold italic leading-relaxed text-zinc-100 [font-family:var(--font-rajdhani)] sm:text-xl md:text-2xl">
-                            “Put quote here from Dr Basil lol ...do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.”
+                            “AUS Racing isn't just about building a car. It's about building engineers who aren't afraid to fail, learn, and get back up. At AUS Racing, we don't wait for opportunities. We engineer them.”
                         </blockquote>
 
 
