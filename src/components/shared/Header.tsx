@@ -26,20 +26,25 @@ export default function Header() {
   // 1. SCROLL OBSERVER FOR HOMEPAGE SECTIONS
   useEffect(() => {
     // If we aren't on the homepage, let the pathname handle active states exclusively
-    // Fix: Bypasse es lint error, the feature is intentional
     if (pathname !== "/") {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveHash("");
       return;
     }
 
-    const elements = document.querySelectorAll("section[id], footer[id]");
+    // UPDATE 1: Removed [id] from footer so it catches it regardless of its attributes
+    const elements = document.querySelectorAll("section[id], footer");
     
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveHash(`#${entry.target.id}`);
+            // UPDATE 2: If the user hits the footer, clear the hash so "Home" highlights
+            if (entry.target.tagName.toLowerCase() === "footer") {
+              setActiveHash("");
+            } else {
+              setActiveHash(`#${entry.target.id}`);
+            }
           }
         });
       },
@@ -49,7 +54,10 @@ export default function Header() {
     elements.forEach((el) => observer.observe(el));
 
     const handleScroll = () => {
-      if (window.scrollY < 100) {
+      const isAtTop = window.scrollY < 100;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+
+      if (isAtTop || isAtBottom) {
         setActiveHash(""); // Reset to Home at the very top
       }
     };
@@ -72,7 +80,15 @@ export default function Header() {
       return;
     }
 
-    // CASE B: Already on the homepage, clicking a homepage anchor link
+    // CASE B: Universal Scroll-to-Top for any standard active page (Home, Newsletter, Sponsors, etc.)
+    if (pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (href === "/") window.history.pushState(null, "", "/"); // Keeps the homepage URL clean
+      return;
+    }
+
+    // CASE C: Already on the homepage, clicking a homepage anchor link
     if (pathname === "/" && href.startsWith("/#")) {
       e.preventDefault();
       const targetId = href.replace("/#", "");
@@ -169,13 +185,18 @@ export default function Header() {
               </li>
             );
           })}
+
         </ul>
 
         {/* 4. ALL SCREENS RIGHT: CTA Button */}
         <div className="order-3 flex-none lg:flex-1 flex items-center justify-end">
           <Link
             href="/sponsors"
-            className="text-[8px] sm:text-[9px] md:text-[11px] whitespace-nowrap tracking-widest uppercase px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 bg-primary text-background font-bold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,170,0,0.5)] cursor-pointer"
+            className={`text-[8px] sm:text-[9px] md:text-[11px] whitespace-nowrap tracking-widest uppercase px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2.5 font-bold rounded-lg transition-all duration-300 cursor-pointer ${
+              pathname === "/sponsors"
+                ? "bg-transparent text-primary border border-primary hover:bg-primary/10" 
+                : "bg-primary text-background hover:scale-105 hover:shadow-[0_0_20px_rgba(255,170,0,0.5)]"
+            }`}
           >
             Partner With Us &rarr;
           </Link>

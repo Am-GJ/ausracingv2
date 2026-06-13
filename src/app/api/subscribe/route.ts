@@ -1,49 +1,54 @@
 // src/app/api/subscribe/route.ts
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { Resend } from 'resend';
 
-export async function POST(request: Request) {
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req: Request) {
   try {
-    const body = await request.json();
-    const rawEmail = body.email;
+    const { email } = await req.json();
 
-    // 1. SANITIZE & VALIDATE
-    // Check if it exists and matches a standard email format
-    if (!rawEmail || !/^\S+@\S+\.\S+$/.test(rawEmail)) {
-      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
+    if (!email) {
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
+
+    // 1. EXPLICIT CHECK: Ask Resend if this email already exists
+    const { data: existingContact } = await resend.contacts.get({ 
+      email: email 
+    });
+
+    // 2. If data comes back, they are already on the roster. Stop here.
+    if (existingContact) {
+      return NextResponse.json({ success: true, alreadySubscribed: true });
+    }
+
+    // 3. If they don't exist, create the new contact
+    await resend.contacts.create({
+      email: email,
+      unsubscribed: false,
+    });
+
+    // 4. Fire the welcome email off to Resend
+    const { error: emailError } = await resend.emails.send({
+      from: 'AUS Racing <onboarding@resend.dev>',
+      to: email, 
+      subject: 'Welcome to the Grid | AUS Racing',
+      html: `
+        <div style="font-family: monospace; background-color: #18181b; color: #ffffff; padding: 40px; border-radius: 8px;">
+          <h1 style="color: #eab308; text-transform: uppercase; letter-spacing: 2px;">Welcome to the Team</h1>
+          <p style="color: #a1a1aa; font-size: 14px;">You are now subscribed to the AUS Racing newsletter.</p>
+          <p style="color: #a1a1aa; font-size: 14px;">We'll keep you updated on our latest concepts, track days, and engineering breakthroughs.</p>
+        </div>
+      `,
+    });
+
+    if (emailError) throw new Error(emailError.message);
+
+    // 5. Tell the frontend it's a brand new subscriber
+    return NextResponse.json({ success: true, alreadySubscribed: false });
     
-    // Trim whitespace and convert to lowercase for clean storage
-    const sanitizedEmail = rawEmail.trim().toLowerCase();
-
-    // 2. DEFINE SAVE LOCATION
-    // This will save to src/data/emails.json
-    const filePath = path.join(process.cwd(), 'src', 'data', 'emails.json');
-
-    // 3. READ EXISTING DATA
-    let emails: string[] = [];
-    try {
-      const fileData = await fs.readFile(filePath, 'utf-8');
-      emails = JSON.parse(fileData);
-    } catch {
-      // If the file doesn't exist yet, we just start with an empty array. No big deal.
-    }
-
-    // 4. PREVENT DUPLICATES
-    if (emails.includes(sanitizedEmail)) {
-      // We return 200 Success even if it's a duplicate so the UI still looks good
-      return NextResponse.json({ message: 'Already on the list' }, { status: 200 });
-    }
-
-    // 5. SAVE NEW EMAIL
-    emails.push(sanitizedEmail);
-    await fs.writeFile(filePath, JSON.stringify(emails, null, 2));
-
-    return NextResponse.json({ message: 'Successfully added' }, { status: 200 });
-
   } catch (error) {
-    console.error('Subscription error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error("Resend API Error:", error);
+    return NextResponse.json({ error: 'Failed to process subscription' }, { status: 500 });
   }
 }

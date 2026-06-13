@@ -1,14 +1,14 @@
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
-import NewsletterForm from "./NewsletterForm";
 import Link from "next/link";
+import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black text-gray-400 py-14 px-6 border-t border-gray-800">
+    <footer className="w-full bg-black text-gray-400 py-10 px-6 border-t border-gray-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-        
+
         {/* COLUMN 1 — BRAND */}
         <div className="flex flex-col gap-4">
 
@@ -21,9 +21,8 @@ export default function Footer() {
               className="object-contain object-left"
               style={{ width: 'auto', height: '100%' }}
             />
-          </div>
-
-          <p className="text-sm text-gray-400 mt-2">
+          </div> 
+          <p className="text-sm text-gray-400 mt-2 leading-relaxed">
             Engineering the future of motorsport performance from AUS.
           </p>
 

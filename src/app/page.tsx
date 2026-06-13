@@ -35,7 +35,6 @@ export default function Home() {
       <section ref={heroRef} className="relative w-full">
         <HeroVideo 
           onVideoReady={() => setVideoReady(true)}
-          isLoaderDone={isLoaderDone} 
         />
       </section>
 
