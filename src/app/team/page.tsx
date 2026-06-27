@@ -5,7 +5,7 @@
 // Images will be provided later — use next/image with placeholder for now.
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { TEAM_DESCRIPTIONS, useTeamMembers, useCategories } from "@/lib/team";
 
@@ -32,10 +32,15 @@ const TeamCard = ({ member, priority = false }: { member: TeamMemberData, priori
     ? '/images/team/fplaceholder.webp' 
     : '/images/team/mplaceholder.webp';
 
-  // Use Pocketbase photo if available, otherwise fall back to static path or placeholder
-  const initialSrc = member.photoUrl 
+  // Determine best image source: Pocketbase > static file > placeholder
+  const getSrc = () => member.photoUrl 
     || (member.hasPhoto ? namePhotoPath : fallbackPath);
-  const [imgSrc, setImgSrc] = useState(initialSrc);
+  const [imgSrc, setImgSrc] = useState(getSrc);
+
+  // Update image when member data changes (e.g. Pocketbase fetch completes)
+  useEffect(() => {
+    setImgSrc(getSrc());
+  }, [member.photoUrl, member.hasPhoto]);
 
   return (
     <div 
@@ -55,12 +60,10 @@ const TeamCard = ({ member, priority = false }: { member: TeamMemberData, priori
           draggable={false}
           priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          // ✨ FIX: We just apply object-cover directly to everything now!
           className="transition-all select-none duration-500 group-hover:scale-105 object-cover"
           onError={() => setImgSrc(fallbackPath)}
         />
 
-        {/* Overlay to keep the "dark" aesthetic consistent */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
       </div>
 
@@ -94,7 +97,6 @@ export default function TeamPage() {
       {/* SECTION HEADER */}
       <div className="text-center max-w-6xl mx-auto mb-5">
         <h1 className="font-orbitron text-3xl font-semibold tracking-[0.12em] uppercase text-white mb-2 select-none cursor-default">
-          {/* ✨ FIX: Wrap "Team" in a span and give it the primary color */}
           Meet the <span className="text-primary">Team</span>
         </h1>
         <div className="w-20 h-[2px] bg-primary mx-auto mb-5"></div>
