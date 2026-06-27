@@ -60,6 +60,7 @@ const TeamCard = ({ member, priority = false }: { member: TeamMemberData, priori
           draggable={false}
           priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          unoptimized={imgSrc.startsWith("http")}
           className="transition-all select-none duration-500 group-hover:scale-105 object-cover"
           onError={() => setImgSrc(fallbackPath)}
         />
